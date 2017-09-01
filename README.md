@@ -7,7 +7,7 @@
     排版简化了些内容
   ```
 
-(任务6第二题)[https://github.com/narci2010/frontend-task]解决方案:
+[任务6第二题](https://github.com/narci2010/frontend-task)解决方案:
 服务器部署nginx用nginx进行跨域转发
 ```
   server {
@@ -35,7 +35,7 @@
  }   
 ```
 
-(任务3第二题)[https://github.com/narci2010/frontend-task]客户与服务器端要保留cookie通信解决方案:
+[任务3第二题](https://github.com/narci2010/frontend-task)客户与服务器端要保留cookie通信解决方案:
 ```
   可利用vuex的状态管理存储，存储所要发送的cookie信息
 ```
