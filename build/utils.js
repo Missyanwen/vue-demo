@@ -27,19 +27,6 @@ module.exports = {
         mkdir('-p', target);
         cp('-R', source, target);
     },
-    run: {
-        nginx: function() {
-            child.exec('cd ./nginx && tasklist|find /i "nginx.exe" && taskkill /F /IM nginx.exe > nul && start nginx || start nginx.exe', function(err) {
-                err && console.log('nginx start fail', err);
-            });
-        },
-        live: function() {
-            //这里的目录输入要看放在哪里
-            exec('cd ../output/wanghuatong/node-server && npm run live', function(err) {
-                err && console.log('node start fail', err);
-            });
-        }
-    },
 	cssTypes: {
 		css: 'css-loader',
 		less: 'css-loader!less-loader'
