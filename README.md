@@ -1,21 +1,41 @@
-# 这是用nodejs+Express+mongodb开发的博客功能  
-    前后端分离模式开发，分为二个版块博客留言，和博客内容管理
+# webpack + vue  的一个简单demo
+  ```
+    下载安装: 1、npm install
+    启动项目：2、npm run dev
+              3、http://localhost:3000
+    只适于开发环境，用webpack的代理进行跨域转发, 数据用豆瓣api
+    排版简化了些内容
+  ```
 
->nodejs目录结构  
-      - db 存放数据库结构  
-      - models 数据表  
-      - public 静态文件  
-      - routers 路由  
-      - schemas 数据表字段  
-      - views 视图页  
-      - app.js 主入口文件  
+(任务6第二题)[https://github.com/narci2010/frontend-task]解决方案:
+服务器部署nginx用nginx进行跨域转发
+```
+  server {
+   listen   80;
+   server_name  www.域名.com;
 
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass   http://localhost:1983/;
+    }
 
+    location /v2/book {
+        proxy_store off;
+        proxy_redirect off;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_connect_timeout 600;
+        proxy_read_timeout 600;
+        proxy_send_timeout 600;
+        proxy_set_header Host "www.域名.com";
+        proxy_pass https://api.douban.com/v2/book;
+    }
+ }   
+```
 
-    这里少了一个db目录是存放数据库存储的，需求去[官网](https://www.mongodb.com/download-center?jmp=nav#community)下载适合自己机器的安装 
-    把他的安装放到一个mongodb目录下，需要用到他bin下的mongod.exe
-    打开cmd命令行找到mongodb目录下的bin目录运行 [mongod --dbpath=D:\project\nodejs\db --port=27017]启动数据库
-    --dbpath是指定到那个目录就是上面的db目录
-    --port是端口号它默认是27017
-
-    然后去[下载](https://robomongo.org/)他的可视化工具,进行表结构构建
+(任务3第二题)[https://github.com/narci2010/frontend-task]客户与服务器端要保留cookie通信解决方案:
+```
+  可利用vuex的状态管理存储，存储所要发送的cookie信息
+```
